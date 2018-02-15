@@ -25,16 +25,12 @@
         'name': 'invalid.illegal.character_not_allowed_here.java'
       }
       {
-        'match': '(?<!_)_(?=\\s*(\\.|;))|\\b\\d+|-+'
+        'match': '(?:_)?_(?=\\s*(\\.|;))|[A-Z]+|\\b\\d+|-+'
         'name': 'invalid.illegal.character_not_allowed_here.java'
       }
       {
-        'match': '[A-Z]+'
-        'name': 'invalid.deprecated.package_name_not_lowercase.java'
-      }
-      {
         # http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
-        'match': '''(?x)\\b(?<!\\$)
+        'match': '''(?x)\\b(?:\\$)?
                     (abstract|assert|boolean|break|byte|case|catch|char|class|
                     const|continue|default|do|double|else|enum|extends|final|
                     finally|float|for|goto|if|implements|import|instanceof|int|
@@ -73,16 +69,16 @@
         'name': 'invalid.illegal.character_not_allowed_here.java'
       }
       {
-        'match': '(?<!\\.)\\s*\\*'
+        'match': '(?:\\.)?\\s*\\*'
         'name': 'invalid.illegal.character_not_allowed_here.java'
       }
       {
-        'match': '(?<!_)_(?=\\s*(\\.|;))|\\b\\d+|-+'
+        'match': '(?:_)?_(?=\\s*(\\.|;))|\\b\\d+|-+'
         'name': 'invalid.illegal.character_not_allowed_here.java'
       }
       {
         # http://docs.oracle.com/javase/tutorial/java/nutsandbolts/_keywords.html
-        'match': '''(?x)\\b(?<!\\$)
+        'match': '''(?x)\\b(?:\\$)?
                     (abstract|assert|boolean|break|byte|case|catch|char|class|
                     const|continue|default|do|double|else|enum|extends|final|
                     finally|float|for|goto|if|implements|import|instanceof|int|
@@ -186,7 +182,7 @@
         'include': '#all-types'
       }
       {
-        'begin': '(?<!\\])\\s*({)' # Don't match new int[]{1, 2, 3};
+        'begin': '(?:\\])?\\s*({)' # Don't match new int[]{1, 2, 3};
         'beginCaptures':
           '1':
             'name': 'punctuation.section.inner-class.begin.bracket.curly.java'
@@ -226,7 +222,7 @@
       }
     ]
   'class':
-    'begin': '(?=\\w?[\\w\\s]*(?:class|(?<!@)interface|enum)\\s+\\w+)'
+    'begin': '(?=\\w?[\\w\\s]*(?:class|(?:@)?interface|enum)\\s+\\w+)'
     'end': '}'
     'endCaptures':
       '0':
@@ -248,7 +244,7 @@
             'name': 'storage.modifier.java'
           '2':
             'name': 'entity.name.type.class.java'
-        'match': '(class|(?<!@)interface|enum)\\s+(\\w+)'
+        'match': '(class|(?:@)?interface|enum)\\s+(\\w+)'
         'name': 'meta.class.identifier.java'
       }
       {
@@ -915,10 +911,10 @@
     'patterns': [
       {
         'match': '''(?x)
-          \\b(?<!\\$)
+          \\b(?:\\$)?
           0(x|X)
           (
-            (?<!\\.)[0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?[Ll]?(?!\\.)
+            (?:\\.)?[0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?[Ll]?(?!\\.)
             |
             (
               [0-9a-fA-F]([0-9a-fA-F_]*[0-9a-fA-F])?\\.?
@@ -932,16 +928,16 @@
         'name': 'constant.numeric.hex.java'
       }
       {
-        'match': '\\b(?<!\\$)0(b|B)[01]([01_]*[01])?[Ll]?\\b(?!\\$)'
+        'match': '\\b(?:\\$)?0(b|B)[01]([01_]*[01])?[Ll]?\\b(?!\\$)'
         'name': 'constant.numeric.binary.java'
       }
       {
-        'match': '\\b(?<!\\$)0[0-7]([0-7_]*[0-7])?[Ll]?\\b(?!\\$)'
+        'match': '\\b(?:\\$)?0[0-7]([0-7_]*[0-7])?[Ll]?\\b(?!\\$)'
         'name': 'constant.numeric.octal.java'
       }
       {
         'match': '''(?x)
-          (?<!\\$)
+          (?:\\$)?
           (
             \\b[0-9]([0-9_]*[0-9])?\\.\\B(?!\\.)
             |
@@ -951,7 +947,7 @@
             |
             \\b[0-9]([0-9_]*[0-9])?\\.([0-9]([0-9_]*[0-9])?)([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b
             |
-            (?<!\\.)\\B\\.[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b
+            (?:\\.)?\\B\\.[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)?[FfDd]?\\b
             |
             \\b[0-9]([0-9_]*[0-9])?([Ee][+-]?[0-9]([0-9_]*[0-9])?)[FfDd]?\\b
             |
@@ -1030,7 +1026,7 @@
     ]
   'objects':
     # obj in obj.prop, obj.methodCall()
-    'match': '(?<![\\w$])[a-zA-Z_$][\\w$]*(?=\\s*\\.\\s*[\\w$]+)'
+    'match': '(?:[\\w$])?[a-zA-Z_$][\\w$]*(?=\\s*\\.\\s*[\\w$]+)'
     'name': 'variable.other.object.java'
   'parameters':
     'patterns': [
